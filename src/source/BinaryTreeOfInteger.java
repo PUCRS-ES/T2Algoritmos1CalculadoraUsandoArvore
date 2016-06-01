@@ -50,7 +50,6 @@ public class BinaryTreeOfInteger {
             throw new Exception("Árvore está vazia");
         }
         root.element = element;
-        cursor = root;
     }
     
     public Integer getParent(Integer element) {
@@ -94,13 +93,13 @@ public class BinaryTreeOfInteger {
 //    }
     
     public boolean addRoot(String element) {
-        //Implementar
         if (root != null){
             return false;
         }
         
         Node node = new Node(element);
         root = node;
+        cursor = root;
         count++;
         return true;
     }
@@ -175,11 +174,11 @@ public class BinaryTreeOfInteger {
         Node novoNo = new Node(valor);
         if(hasLeft()) {
             cursor.left = novoNo;
-            novoNo.father = cursor.left;
+            novoNo.father = cursor;
         }
         else {
             cursor.right = novoNo;
-            novoNo.father = cursor.right;
+            novoNo.father = cursor;
         }
         cursor = novoNo;
     }
@@ -195,16 +194,16 @@ public class BinaryTreeOfInteger {
     
     public boolean hasLeft() {
         if(cursor.left == null)
-            return false;
-        else
             return true;
+        else
+            return false;
     }
     
     public boolean hasRight() {
         if(cursor.right == null)
-            return false;
-        else
             return true;
+        else
+            return false;
     }    
     
     public Integer getLeft(Integer element) {

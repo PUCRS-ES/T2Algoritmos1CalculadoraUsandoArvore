@@ -16,25 +16,26 @@ public class Programa {
             String linhaAtual = leitor.leProximaLinha();
             while(linhaAtual != null) {
                 BinaryTreeOfInteger arvore = new BinaryTreeOfInteger();
-                arvore.setRoot("");
+                arvore.addRoot("");
                 
                 String[] termos = linhaAtual.split(" ");
                 //ignora o primeiro e o ultimo parentesis
                 for(int i = 1; i < termos.length - 1; i++) {
                     if(termos[i].equals("("))
                         arvore.addLowerLevel("");
+                    else if (termos[i].equals(")"))
+                        arvore.returnToUpperLevel();
+                    else if (termos[i].equals("+") || termos[i].equals("-") || 
+                             termos[i].equals("*") || termos[i].equals("/") || termos[i].equals("^"))
+                        arvore.setValueOnCursor(termos[i]);
                     else {
-                        if (termos[i].equals("+") || termos[i].equals("-") || 
-                            termos[i].equals("*") || termos[i].equals("/") || termos[i].equals("^"))
-                            arvore.setValueOnCursor(termos[i]);
-                        else {
-                            //aqui deveria fazer uma conversao para double so para conferir se
-                            //o valor realmente eh um double
-                            arvore.addOperando(termos[i]);
-                        }
+                        //aqui deveria fazer uma conversao para double so para conferir se
+                        //o valor realmente eh um double
+                        arvore.addOperando(termos[i]);
                     }
-                                
                 }
+                
+                //interessante colocar uma checagem para ver se o node atual eh root
             }
         } 
         catch (FileNotFoundException e) {
