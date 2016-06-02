@@ -69,29 +69,28 @@ public class BinaryTreeOfInteger {
         }
     }
 
-//    IMPLEMENTAR - Solicitado no PDF do exercicio
-//    public int height() {
-//        Queue<Node> fila = new Queue<>();
-//        Node aux = null;
-//        Node fim = null;
-//        if (root != null) {
-//            fila.enqueue(root);
-//            while(!fila.isEmpty()) {
-//                aux = fila.dequeue();
-//                if (aux.left != null)
-//                    fila.enqueue(aux.left);
-//                if (aux.right != null)
-//                    fila.enqueue(aux.right);
-//                fim = aux;
-//            }
-//        }                  
-//        int cont=0;        
-//        while (fim != root) {
-//            cont++;
-//            fim = fim.father;
-//        }        
-//        return cont;     
-//    }
+    public int height() throws Exception {
+        Queue<Node> fila = new Queue<>();
+        Node aux = null;
+        Node fim = null;
+        if (root != null) {
+            fila.enqueue(root);
+            while(!fila.isEmpty()) {
+                aux = fila.dequeue();
+                if (aux.left != null)
+                    fila.enqueue(aux.left);
+                if (aux.right != null)
+                    fila.enqueue(aux.right);
+                fim = aux;
+            }
+        }                  
+        int cont=0;        
+        while (fim != root) {
+            cont++;
+            fim = fim.father;
+        }        
+        return cont;     
+    }
     
     public boolean addRoot(String element) {
         if (root != null){

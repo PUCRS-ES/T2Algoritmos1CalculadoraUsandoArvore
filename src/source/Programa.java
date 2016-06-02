@@ -52,6 +52,7 @@ public class Programa {
                     throw new Exception("Erro ao percorrer a arvore!");
                 
                 System.out.println(arvore.positionsWidth().toString());
+                System.out.println(arvore.height());
             } while(linhaAtual != null);
         } 
         catch (FileNotFoundException e) {
