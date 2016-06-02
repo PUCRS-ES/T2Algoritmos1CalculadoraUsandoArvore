@@ -11,8 +11,17 @@ public class Programa {
         //le expressoes e monta cada expressao em uma arvore
         try {
             leitor = new Leitor("expressoes.txt");
-            String linhaAtual = leitor.leProximaLinha();
-            while(linhaAtual != null) {
+            String linhaAtual;
+            //itera sobre cada uma das expressoes (linhas do arquivo)
+            do {
+                linhaAtual = leitor.leProximaLinha();
+                int quantidadeAbreParenteses = linhaAtual.split("(").length;
+                int quantidadeFechaParenteses = linhaAtual.split(")").length;
+                if(quantidadeAbreParenteses != quantidadeFechaParenteses) {
+                    System.out.println("Expressao com erro de erro de sintaxe");
+                    continue;
+                }
+                
                 BinaryTreeOfInteger arvore = new BinaryTreeOfInteger();
                 arvore.addRoot("");
                 
@@ -41,7 +50,7 @@ public class Programa {
                 
                 if(!arvore.verificaSeEstaNaRaiz())
                     throw new Exception("Erro ao percorrer a arvore!");
-            }
+            } while(linhaAtual != null);
         } 
         catch (FileNotFoundException e) {
             System.out.println("Arquivo nao encontrado.");
