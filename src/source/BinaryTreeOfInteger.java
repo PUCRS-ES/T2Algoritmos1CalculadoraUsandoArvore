@@ -21,9 +21,9 @@ public class BinaryTreeOfInteger {
         }
     }
 
-    private int count; //contagem do número de nodos
-    private Node root; //referência para o nodo raiz
-    private Node cursor;
+    private int count; //contagem do numero de nodos
+    private Node root; //referencia para o nodo raiz
+    private Node cursor; //referencia para alguma posicao dentro da arvore
 
     public BinaryTreeOfInteger() {
         count = 0;
@@ -69,6 +69,7 @@ public class BinaryTreeOfInteger {
         }
     }
 
+//    IMPLEMENTAR - Solicitado no PDF do exercicio
 //    public int height() {
 //        Queue<Node> fila = new Queue<>();
 //        Node aux = null;
@@ -160,17 +161,7 @@ public class BinaryTreeOfInteger {
         cursor.setElement(value);
     }
     
-    public boolean isExternal(int element) {
-        // Implementar
-        return false;
-    }
-
-    public boolean isInternal(int element) {
-        // Implementar
-        return false;
-    }
-    
-    public void addLowerLevel(String valor) {
+    public void addAndMoveCursorToLowerLevel(String valor) {
         Node novoNo = new Node(valor);
         if(hasLeft()) {
             cursor.left = novoNo;
@@ -183,13 +174,13 @@ public class BinaryTreeOfInteger {
         cursor = novoNo;
     }
     
-    public void returnToUpperLevel() {
+    public void returnCursorToUpperLevel() {
         cursor = cursor.father;
     }
     
     public void addOperando(String valor) {
-        addLowerLevel(valor);
-        returnToUpperLevel();
+        addAndMoveCursorToLowerLevel(valor);
+        returnCursorToUpperLevel();
     }
     
     public boolean hasLeft() {
@@ -205,6 +196,10 @@ public class BinaryTreeOfInteger {
         else
             return false;
     }    
+    
+    public boolean verificaSeEstaNaRaiz() {
+        return cursor == root;
+    }
     
     public Integer getLeft(Integer element) {
         // Implementar
@@ -252,12 +247,14 @@ public class BinaryTreeOfInteger {
 //        res.add(n.element);
 //    }
 //
+//    IMPLEMENTAR - Solicitado no PDF do exercicio
 //    public LinkedListOfInteger positionsCentral() {
 //        LinkedListOfInteger res = new LinkedListOfInteger();
 //        positionsCentralAux(root, res);
 //        return res;
 //    }
 //    
+//    IMPLEMENTAR - Solicitado no PDF do exercicio
 //    private void positionsCentralAux(Node n, LinkedListOfInteger res) {
 //        if(n == null)
 //            return;
@@ -269,6 +266,7 @@ public class BinaryTreeOfInteger {
 //
 //    }
 //
+//    IMPLEMENTAR - Solicitado no PDF do exercicio
 //    public LinkedListOfInteger positionsWidth() {
 //        LinkedListOfInteger li = new LinkedListOfInteger();
 //        Queue<Node> fila = new Queue<>();
@@ -287,18 +285,6 @@ public class BinaryTreeOfInteger {
 //        return li;
 //    }
 
-    public int level (String element) {
-        Node n = this.searchNodeRef(element, root);
-        if (n==null)
-            return -1;
-        int cont=0;        
-        while (n!= root) {
-            cont++;
-            n = n.father;
-        }        
-        return cont;
-    }
-            
     public String strPositionsPre() {
         return strPositionsPre(root);
     }
