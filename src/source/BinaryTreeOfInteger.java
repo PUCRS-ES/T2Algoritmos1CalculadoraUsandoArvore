@@ -266,24 +266,23 @@ public class BinaryTreeOfInteger {
 //
 //    }
 //
-//    IMPLEMENTAR - Solicitado no PDF do exercicio
-//    public LinkedListOfInteger positionsWidth() {
-//        LinkedListOfInteger li = new LinkedListOfInteger();
-//        Queue<Node> fila = new Queue<>();
-//        Node aux = null;
-//        if (root != null) {
-//            fila.enqueue(root);
-//            while(!fila.isEmpty()) {
-//                aux = fila.dequeue();
-//                if (aux.left != null)
-//                    fila.enqueue(aux.left);
-//                if (aux.right != null)
-//                    fila.enqueue(aux.right);
-//                li.add(aux.element);
-//            }
-//        }        
-//        return li;
-//    }
+    public LinkedListOfString positionsWidth() throws Exception {
+        LinkedListOfString li = new LinkedListOfString();
+        Queue<Node> fila = new Queue<>();
+        Node aux = null;
+        if (root != null) {
+            fila.enqueue(root);
+            while(!fila.isEmpty()) {
+                aux = fila.dequeue();
+                if (aux.left != null)
+                    fila.enqueue(aux.left);
+                if (aux.right != null)
+                    fila.enqueue(aux.right);
+                li.add(aux.element);
+            }
+        }
+        return li;
+    }
 
     public String strPositionsPre() {
         return strPositionsPre(root);

@@ -15,8 +15,8 @@ public class Programa {
             //itera sobre cada uma das expressoes (linhas do arquivo)
             do {
                 linhaAtual = leitor.leProximaLinha();
-                int quantidadeAbreParenteses = linhaAtual.split("(").length;
-                int quantidadeFechaParenteses = linhaAtual.split(")").length;
+                int quantidadeAbreParenteses = linhaAtual.split("\\(", -1).length;
+                int quantidadeFechaParenteses = linhaAtual.split("\\)", -1).length;
                 if(quantidadeAbreParenteses != quantidadeFechaParenteses) {
                     System.out.println("Expressao com erro de erro de sintaxe");
                     continue;
@@ -50,6 +50,8 @@ public class Programa {
                 
                 if(!arvore.verificaSeEstaNaRaiz())
                     throw new Exception("Erro ao percorrer a arvore!");
+                
+                System.out.println(arvore.positionsWidth().toString());
             } while(linhaAtual != null);
         } 
         catch (FileNotFoundException e) {
