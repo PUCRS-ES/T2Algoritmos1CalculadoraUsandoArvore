@@ -246,25 +246,23 @@ public class BinaryTreeOfInteger {
 //        res.add(n.element);
 //    }
 //
-//    IMPLEMENTAR - Solicitado no PDF do exercicio
-//    public LinkedListOfInteger positionsCentral() {
-//        LinkedListOfInteger res = new LinkedListOfInteger();
-//        positionsCentralAux(root, res);
-//        return res;
-//    }
-//    
-//    IMPLEMENTAR - Solicitado no PDF do exercicio
-//    private void positionsCentralAux(Node n, LinkedListOfInteger res) {
-//        if(n == null)
-//            return;
-//        if(n.left != null)
-//            positionsCentralAux(n.left, res);
-//        res.add(n.element);
-//        if(n.right != null)
-//            positionsCentralAux(n.right, res);
-//
-//    }
-//
+
+    public LinkedListOfString positionsCentral() {
+        LinkedListOfString res = new LinkedListOfString();
+        positionsCentralAux(root, res);
+        return res;
+    }
+    
+    private void positionsCentralAux(Node n, LinkedListOfString res) {
+        if(n == null)
+            return;
+        if(n.left != null)
+            positionsCentralAux(n.left, res);
+        res.add(n.element);
+        if(n.right != null)
+            positionsCentralAux(n.right, res);
+    }
+
     public LinkedListOfString positionsWidth() throws Exception {
         LinkedListOfString li = new LinkedListOfString();
         Queue<Node> fila = new Queue<>();
