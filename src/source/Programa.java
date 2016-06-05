@@ -51,11 +51,12 @@ public class Programa {
                 if(!arvore.verificaSeEstaNaRaiz())
                     throw new Exception("Erro ao percorrer a arvore!");
                 
-                System.out.println(arvore.positionsWidth().toString());
-                System.out.println(arvore.height());
-                System.out.println(arvore.positionsCentral().toString());
-                System.out.println(arvore.positionsPre().toString());
-                System.out.println(arvore.positionsPos().toString());
+//                System.out.println(arvore.positionsWidth().toString());
+//                System.out.println(arvore.height());
+//                System.out.println(arvore.positionsCentral().toString());
+//                System.out.println(arvore.positionsPre().toString());
+//                System.out.println(arvore.positionsPos().toString());
+                arvore.calcular();
             } while(linhaAtual != null);
         } 
         catch (FileNotFoundException e) {

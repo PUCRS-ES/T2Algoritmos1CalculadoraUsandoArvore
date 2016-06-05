@@ -1,5 +1,8 @@
 package source;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinaryTreeOfString {
 
     private static final class Node {
@@ -171,6 +174,7 @@ public class BinaryTreeOfString {
             novoNo.father = cursor;
         }
         cursor = novoNo;
+        count++;
     }
     
     public void returnCursorToUpperLevel() {
@@ -212,6 +216,40 @@ public class BinaryTreeOfString {
             if ( n.right != null)
                 return n.right.element;
         return null;
+    }
+    
+    public Double calcular() throws Exception  {
+        Calculadora calc = new Calculadora();
+        
+        while(count > 1) {
+            List<Node> listaDeNodosExternos = getListOfExternalNodes();
+            for (int i = 1; i < listaDeNodosExternos.size(); i++) {
+                Node anterior = listaDeNodosExternos.get(i - 1);
+                Node atual = listaDeNodosExternos.get(i);
+                if(anterior.father == atual.father) {
+                    Node pai = anterior.father;
+                    calc.setOperador1(Double.parseDouble(anterior.element));
+                    calc.setOperador2(Double.parseDouble(atual.element));
+                    calc.setOperando(pai.element.charAt(0));
+                    double valor = calc.calcula();
+
+                    String valorString = String.format("%f", valor).replace(',','.');
+                    pai.setElement(valorString);
+
+                    pai.left = null;
+                    pai.right = null;
+                    anterior.father = null;
+                    atual.father = null;
+                    count = count - 2;
+                }
+            }
+        }
+        
+        return Double.parseDouble(root.element);
+    }
+    
+    public boolean isExternal(Node node) {
+        return node.left == null && node.right == null;
     }
     
     public LinkedListOfString positionsPre() {
@@ -275,6 +313,28 @@ public class BinaryTreeOfString {
                 if (aux.right != null)
                     fila.enqueue(aux.right);
                 li.add(aux.element);
+            }
+        }
+        return li;
+    }
+    
+    //variacao do caminhamento em largura, porem adiciona
+    //apenas os nodes externos, e retorna uma lista de Node
+    public List<Node> getListOfExternalNodes() throws Exception {
+        List<Node> li = new ArrayList<Node>();
+        Queue<Node> fila = new Queue<>();
+        Node aux = null;
+        if (root != null) {
+            fila.enqueue(root);
+            while(!fila.isEmpty()) {
+                aux = fila.dequeue();
+                if (aux.left != null)
+                    fila.enqueue(aux.left);
+                if (aux.right != null)
+                    fila.enqueue(aux.right);
+                
+                if(aux.left == null && aux.right == null)
+                    li.add(aux);
             }
         }
         return li;
