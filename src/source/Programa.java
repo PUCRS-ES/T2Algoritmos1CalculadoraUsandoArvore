@@ -15,6 +15,10 @@ public class Programa {
             //itera sobre cada uma das expressoes (linhas do arquivo)
             do {
                 linhaAtual = leitor.leProximaLinha();
+                if(linhaAtual == null)
+                    continue;
+                
+                System.out.println("Expressao: " + linhaAtual);
                 int quantidadeAbreParenteses = linhaAtual.split("\\(", -1).length;
                 int quantidadeFechaParenteses = linhaAtual.split("\\)", -1).length;
                 if(quantidadeAbreParenteses != quantidadeFechaParenteses) {
@@ -51,12 +55,12 @@ public class Programa {
                 if(!arvore.verificaSeEstaNaRaiz())
                     throw new Exception("Erro ao percorrer a arvore!");
                 
-//                System.out.println(arvore.positionsWidth().toString());
-//                System.out.println(arvore.height());
-//                System.out.println(arvore.positionsCentral().toString());
-//                System.out.println(arvore.positionsPre().toString());
-//                System.out.println(arvore.positionsPos().toString());
-                arvore.calcular();
+                System.out.println("Caminhamento central: " + arvore.positionsCentral().toString());
+                System.out.println("Caminhamento em largura: " + arvore.positionsWidth().toString());
+                //System.out.println("Caminhamento pós: " + arvore.positionsPos().toString());
+                //System.out.println("Caminhamento pré: " + arvore.positionsPre().toString());
+                System.out.println("Altura: " + arvore.height());
+                System.out.println("Resultado: " + arvore.calcular());
             } while(linhaAtual != null);
         } 
         catch (FileNotFoundException e) {
