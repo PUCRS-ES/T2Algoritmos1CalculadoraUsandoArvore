@@ -1,6 +1,6 @@
 package source;
 
-public class BinaryTreeOfInteger {
+public class BinaryTreeOfString {
 
     private static final class Node {
 
@@ -25,7 +25,7 @@ public class BinaryTreeOfInteger {
     private Node root; //referencia para o nodo raiz
     private Node cursor; //referencia para alguma posicao dentro da arvore
 
-    public BinaryTreeOfInteger() {
+    public BinaryTreeOfString() {
         count = 0;
         root = null;
     }
@@ -213,39 +213,38 @@ public class BinaryTreeOfInteger {
                 return n.right.element;
         return null;
     }
+    
+    public LinkedListOfString positionsPre() {
+        LinkedListOfString res = new LinkedListOfString();
+        positionsPreAux(root, res);
+        return res;
+    }
+    
+    private void positionsPreAux(Node n, LinkedListOfString res) {
+        if(n == null)
+            return;
+        res.add(n.element);
+        if(n.left != null)
+            positionsPreAux(n.left, res);
+        if(n.right != null)
+            positionsPreAux(n.right, res);
+    }
 
-//    public LinkedListOfInteger positionsPre() {
-//        LinkedListOfInteger res = new LinkedListOfInteger();
-//        positionsPreAux(root, res);
-//        return res;
-//    }
-//    
-//    private void positionsPreAux(Node n, LinkedListOfInteger res) {
-//        if(n == null)
-//            return;
-//        res.add(n.element);
-//        if(n.left != null)
-//            positionsPreAux(n.left, res);
-//        if(n.right != null)
-//            positionsPreAux(n.right, res);
-//    }
-//
-//    public LinkedListOfInteger positionsPos() {
-//        LinkedListOfInteger res = new LinkedListOfInteger();
-//        positionsPosAux(root, res);
-//        return res;
-//    }
-//    
-//    private void positionsPosAux(Node n, LinkedListOfInteger res) {
-//        if(n == null)
-//            return;
-//        if(n.left != null)
-//            positionsPosAux(n.left, res);
-//        if(n.right != null)
-//            positionsPosAux(n.right, res);
-//        res.add(n.element);
-//    }
-//
+    public LinkedListOfString positionsPos() {
+        LinkedListOfString res = new LinkedListOfString();
+        positionsPosAux(root, res);
+        return res;
+    }
+    
+    private void positionsPosAux(Node n, LinkedListOfString res) {
+        if(n == null)
+            return;
+        if(n.left != null)
+            positionsPosAux(n.left, res);
+        if(n.right != null)
+            positionsPosAux(n.right, res);
+        res.add(n.element);
+    }
 
     public LinkedListOfString positionsCentral() {
         LinkedListOfString res = new LinkedListOfString();

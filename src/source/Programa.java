@@ -22,7 +22,7 @@ public class Programa {
                     continue;
                 }
                 
-                BinaryTreeOfInteger arvore = new BinaryTreeOfInteger();
+                BinaryTreeOfString arvore = new BinaryTreeOfString();
                 arvore.addRoot("");
                 
                 String[] termos = linhaAtual.split(" ");
@@ -54,6 +54,8 @@ public class Programa {
                 System.out.println(arvore.positionsWidth().toString());
                 System.out.println(arvore.height());
                 System.out.println(arvore.positionsCentral().toString());
+                System.out.println(arvore.positionsPre().toString());
+                System.out.println(arvore.positionsPos().toString());
             } while(linhaAtual != null);
         } 
         catch (FileNotFoundException e) {
